@@ -5,5 +5,8 @@
 
 export const environment = {
   apiUrlBase: 'http://localhost:53938/api',
-  production: false
+  production: false,
+  accessToken: 'access_token',
+  userRole: 'user_role',
+  apiDomain: 'http://localhost:53938'
 };

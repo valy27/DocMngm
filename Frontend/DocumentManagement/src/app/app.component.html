@@ -1,6 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-<app-values></app-values>
-
+<div class="app-container">
+    <app-header *ngIf="loggedIn"></app-header>
+    <router-outlet></router-outlet>    
+</div>

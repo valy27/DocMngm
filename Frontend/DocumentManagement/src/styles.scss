@@ -1,2 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}

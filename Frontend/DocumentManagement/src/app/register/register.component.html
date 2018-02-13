@@ -1,0 +1,29 @@
+<p>
+  register works!
+</p>
+
+<form [formGroup]="registerInfo" #f="ngForm" (ngSubmit)="register()" class="form-container">
+  <mat-form-field>
+    <input formControlName="userName" matInput placeholder="Username">
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="firstName" matInput placeholder="First Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="lastName" matInput placeholder="Last Name">
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="number" placeholder="Age" formControlName="age" min="10" max="99">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Role" formControlName="role">
+      <mat-option value="Administrator">Administrator</mat-option>
+      <mat-option value="User">User</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary" [disabled]="registerInfo.invalid">Register User</button>
+</form>
