@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DocumentManagement.Infrastructure\DocumentManagement.Infrastructure.csproj" />
     <ProjectReference Include="..\DocumentManagement.Repository\DocumentManagement.Repository.csproj" />
     <ProjectReference Include="..\DocumentManagement.Services\DocumentManagement.Services.csproj" />
   </ItemGroup>

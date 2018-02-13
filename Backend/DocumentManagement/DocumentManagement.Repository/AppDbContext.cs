@@ -14,7 +14,7 @@ namespace DocumentManagement.Repository
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
-    public DbSet<User> Users { get; set; }
+    public DbSet<Account> Accounts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,7 +22,7 @@ namespace DocumentManagement.Repository
 
       modelBuilder.HasDefaultSchema("dbo");
 
-      modelBuilder.Entity<User>(entity => { entity.HasKey(e => e.Id); });
+      modelBuilder.Entity<Account>(entity => { entity.HasKey(e => e.Id); });
     }
   }
 }

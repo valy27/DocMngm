@@ -77,6 +77,31 @@ namespace DocumentManagement.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Accounts",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Age = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    IdentityId = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Registerd = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Accounts_AspNetUsers_IdentityId",
+                        column: x => x.IdentityId,
+                        principalSchema: "dbo",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 schema: "dbo",
                 columns: table => new
@@ -170,30 +195,11 @@ namespace DocumentManagement.Repository.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Users",
+            migrationBuilder.CreateIndex(
+                name: "IX_Accounts_IdentityId",
                 schema: "dbo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Age = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    IdentityId = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Registerd = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_AspNetUsers_IdentityId",
-                        column: x => x.IdentityId,
-                        principalSchema: "dbo",
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
+                table: "Accounts",
+                column: "IdentityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -240,16 +246,14 @@ namespace DocumentManagement.Repository.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_IdentityId",
-                schema: "dbo",
-                table: "Users",
-                column: "IdentityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Accounts",
+                schema: "dbo");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims",
                 schema: "dbo");
@@ -268,10 +272,6 @@ namespace DocumentManagement.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "Users",
                 schema: "dbo");
 
             migrationBuilder.DropTable(

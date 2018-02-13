@@ -5,7 +5,7 @@ using DocumentManagement.Repository.Models.Identity;
 
 namespace DocumentManagement.Repository.Models
 {
-  public class User
+  public class Account
   {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

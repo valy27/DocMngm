@@ -2,29 +2,29 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DocumentManagement.Infrastructure.Jwt;
 using DocumentManagement.Repository;
 using DocumentManagement.Repository.Models;
 using DocumentManagement.Repository.Models.Identity;
-using DocumentManagement.Services.Jwt;
+using DocumentManagement.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
-namespace DocumentManagement.Services.Account
+namespace DocumentManagement.Services
 {
   public class AccountService : IAccountService
   {
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly AppDbContext _appDbContext;
     private readonly IJwtService _jwtService;
+      private readonly IGenericRepository<Account> _userRepository;
 
     public AccountService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager,
-      IJwtService jwtService, AppDbContext appDbContext)
+      IJwtService jwtService, IGenericRepository<Account> userRepository)
     {
       _userManager = userManager;
       _roleManager = roleManager;
       _jwtService = jwtService;
-      _appDbContext = appDbContext;
+      _userRepository = userRepository;
     }
 
     public async Task<ClaimsIdentity> GetClaimsIdentity(string userName, string password)
@@ -36,9 +36,6 @@ namespace DocumentManagement.Services.Account
       var user = _userManager.FindByNameAsync(userName).Result;
       if (user == null) return await Task.FromResult<ClaimsIdentity>(null);
 
-      //if (await _userManager.CheckPasswordAsync(user, password))
-      //  return await Task.FromResult(_jwtService.GenerateClaimsIdentity(userName, user.Id));
-
       if (await _userManager.CheckPasswordAsync(user, password))
         result.AddClaims(_jwtService.GenerateClaimsIdentity(userName,user.Id).Claims);
 
@@ -47,15 +44,11 @@ namespace DocumentManagement.Services.Account
        var roleClaim = new Claim("userRole", userRoles.FirstOrDefault());
 
       result.AddClaim(roleClaim);
-      //var userAppRoles = _roleManager.Roles.Where(r => userRoles.Contains(r.Name)).ToList();
-      //userAppRoles.ForEach(role => result.AddClaims(_roleManager.GetClaimsAsync(role).Result));
-
-      //if(roleCliams.IsCompletedSuccessfully)
 
       return await Task.FromResult<ClaimsIdentity>(result);
     }
 
-    public async Task CreateUserAccount(ApplicationUser userIdentity,User user , string password, string role)
+    public async Task CreateUserAccount(ApplicationUser userIdentity,Account account , string password, string role)
     {
       try
       {
@@ -69,9 +62,8 @@ namespace DocumentManagement.Services.Account
 
           if (addToRole.Succeeded && result.Succeeded)
           {
-            user.IdentityId = userIdentity.Id;
-            _appDbContext.Users.Add(user);
-            _appDbContext.SaveChanges();
+            account.IdentityId = userIdentity.Id;
+            _userRepository.Insert(account);
           }
         }
       }

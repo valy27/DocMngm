@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using Newtonsoft.Json;
 
-namespace DocumentManagement.Services.Jwt
+namespace DocumentManagement.Infrastructure.Jwt
 {
   public interface IJwtService
   {

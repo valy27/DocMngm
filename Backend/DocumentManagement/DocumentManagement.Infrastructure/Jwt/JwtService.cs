@@ -6,7 +6,7 @@ using System.Security.Principal;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
-namespace DocumentManagement.Services.Jwt
+namespace DocumentManagement.Infrastructure.Jwt
 {
   public class JwtService : IJwtService
   {

@@ -9,7 +9,7 @@ namespace DocumentManagement.Mapper
   {
     public ViewModelToEntityMappingProfile()
     {
-      CreateMap<RegisterViewModel, User>().ForMember(usr => usr.FirstName, map => map.MapFrom(vm => vm.FirstName))
+      CreateMap<RegisterViewModel, Account>().ForMember(usr => usr.FirstName, map => map.MapFrom(vm => vm.FirstName))
         .ForMember(usr => usr.LastName, map => map.MapFrom(vm => vm.LastName))
         .ForMember(usr => usr.Age, map => map.MapFrom(vm => vm.Age))
         .ForMember(usr => usr.Registerd, map => map.MapFrom(vm => vm.Registerd));

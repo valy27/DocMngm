@@ -1,14 +1,14 @@
 ﻿using System;
 using AutoMapper;
 using DocumentManagement.Repository.Models.Identity;
-using DocumentManagement.Services.Account;
-using DocumentManagement.Services.Jwt;
 using DocumentManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using DocumentManagement.Repository.Models;
+using DocumentManagement.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using DocumentManagement.Infrastructure.Jwt;
 
 namespace DocumentManagement.Controllers
 {
@@ -50,7 +50,7 @@ namespace DocumentManagement.Controllers
 
       model.Registerd = DateTime.Now;
       var userIdentity = _mapper.Map<ApplicationUser>(model);
-      var user = _mapper.Map<User>(model);
+      var user = _mapper.Map<Account>(model);
 
       if (_accountService.CreateUserAccount(userIdentity,user, model.Password, model.Role).IsCompletedSuccessfully)
         return new OkObjectResult("Account created");

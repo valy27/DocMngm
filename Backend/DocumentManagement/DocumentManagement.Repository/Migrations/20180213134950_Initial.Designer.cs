@@ -11,7 +11,7 @@ using System;
 namespace DocumentManagement.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180212090318_Initial")]
+    [Migration("20180213134950_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,6 +21,28 @@ namespace DocumentManagement.Repository.Migrations
                 .HasDefaultSchema("dbo")
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DocumentManagement.Repository.Models.Account", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("IdentityId");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<DateTime>("Registerd");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityId");
+
+                    b.ToTable("Accounts");
+                });
 
             modelBuilder.Entity("DocumentManagement.Repository.Models.Identity.ApplicationRole", b =>
                 {
@@ -95,28 +117,6 @@ namespace DocumentManagement.Repository.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("DocumentManagement.Repository.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Age");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("IdentityId");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<DateTime>("Registerd");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdentityId");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -203,7 +203,7 @@ namespace DocumentManagement.Repository.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DocumentManagement.Repository.Models.User", b =>
+            modelBuilder.Entity("DocumentManagement.Repository.Models.Account", b =>
                 {
                     b.HasOne("DocumentManagement.Repository.Models.Identity.ApplicationUser", "Identity")
                         .WithMany()

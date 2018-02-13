@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Text;
 using AutoMapper;
+using DocumentManagement.Infrastructure.Jwt;
 using DocumentManagement.Repository;
+using DocumentManagement.Repository.Models;
 using DocumentManagement.Repository.Models.Identity;
-using DocumentManagement.Services.Account;
-using DocumentManagement.Services.Jwt;
+using DocumentManagement.Services;
+using DocumentManagement.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +40,7 @@ namespace DocumentManagement
 
       services.AddTransient<IAccountService, AccountService>();
       services.AddTransient<IJwtService, JwtService>();
+        services.AddTransient<IGenericRepository<Account>, GenericRepository<Account>>();
 
       services.AddAutoMapper();
 

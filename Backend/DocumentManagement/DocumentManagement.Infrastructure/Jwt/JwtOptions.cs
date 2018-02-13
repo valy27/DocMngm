@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.IdentityModel.Tokens;
 
-namespace DocumentManagement.Services.Jwt
+namespace DocumentManagement.Infrastructure.Jwt
 {
   public class JwtOptions
   {
