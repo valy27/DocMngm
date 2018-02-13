@@ -25,7 +25,8 @@ namespace DocumentManagement.Services.Jwt
         {
           id = identity.Claims.Single(c => c.Type == "id").Value,
           auth_token = GenerateEncodedToken(userName, identity),
-          expires_in = _jwtOptions.Expiration
+          expires_in = _jwtOptions.Expiration,
+          userRole = identity.Claims.Single(c=> c.Type == "userRole").Value
         };
 
         return JsonConvert.SerializeObject(response, serializerSettings);
@@ -44,7 +45,8 @@ namespace DocumentManagement.Services.Jwt
         new Claim(JwtRegisteredClaimNames.Sub, userName),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         identity.FindFirst("rol"),
-        identity.FindFirst("id")
+        identity.FindFirst("id"),
+        identity.FindFirst("userRole")
       };
 
       // Create the JWT security token and encode it.

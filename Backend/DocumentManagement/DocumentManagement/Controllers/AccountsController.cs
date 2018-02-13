@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using DocumentManagement.Repository.Models.Identity;
 using DocumentManagement.Services.Account;
 using DocumentManagement.Services.Jwt;
@@ -6,6 +7,8 @@ using DocumentManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using DocumentManagement.Repository.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DocumentManagement.Controllers
 {
@@ -23,6 +26,7 @@ namespace DocumentManagement.Controllers
       _mapper = mapper;
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginViewModel model)
     {
       if (!ModelState.IsValid)
@@ -37,15 +41,18 @@ namespace DocumentManagement.Controllers
       return new OkObjectResult(jwt);
     }
 
+    [Authorize(Policy = "Admin")]
     [HttpPost]
     public IActionResult Create([FromBody] RegisterViewModel model)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var user = _mapper.Map<ApplicationUser>(model);
+      model.Registerd = DateTime.Now;
+      var userIdentity = _mapper.Map<ApplicationUser>(model);
+      var user = _mapper.Map<User>(model);
 
-      if (_accountService.CreateUserAccount(user, model.Password, model.Role).IsCompletedSuccessfully)
+      if (_accountService.CreateUserAccount(userIdentity,user, model.Password, model.Role).IsCompletedSuccessfully)
         return new OkObjectResult("Account created");
       return BadRequest();
     }

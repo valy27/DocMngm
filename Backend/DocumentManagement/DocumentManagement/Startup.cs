@@ -93,7 +93,12 @@ namespace DocumentManagement
         configureOptions.SaveToken = true;
       });
 
-      services.AddMvc();
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("Admin", policy => policy.RequireClaim("userRole", "Admin"));
+        });
+
+            services.AddMvc();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,6 +106,8 @@ namespace DocumentManagement
     {
       if (env.IsDevelopment())
         app.UseDeveloperExceptionPage();
+
+        app.UseAuthentication();
 
       app.UseCors(builder =>
         builder.WithOrigins("*")
