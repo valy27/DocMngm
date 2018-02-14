@@ -27,6 +27,7 @@ namespace DocumentManagement.Controllers
     }
 
     [AllowAnonymous]
+    [HttpPost]
     public async Task<IActionResult> Login([FromBody] LoginViewModel model)
     {
       if (!ModelState.IsValid)

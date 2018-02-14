@@ -1,3 +1,18 @@
-<p>
-  documents works!
-</p>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let document of documents">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Name: {{document.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Created: {{document.created}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+     <p>Size: {{document.fileSize}}</p>
+     <p>Owner: {{document.ownerUserName}}</p>
+     <p>Description: {{document.description}}</p>
+    <button mat-raised-button color="warn" (click)="remove(document.id)">Remove</button>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<button class="dialog-button" mat-fab (click)="openDialog()">+</button>

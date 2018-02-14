@@ -17,6 +17,8 @@ import { environment } from '../environments/environment';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { DocumentService } from './services/document.service';
+import { DialogComponent } from './documents/dialog/dialog.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { DocumentsComponent } from './documents/documents.component';
     LoginComponent,
     HeaderComponent,
     RegisterComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { DocumentsComponent } from './documents/documents.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [LoginService, RegisterService],
-  bootstrap: [AppComponent]
+  providers: [LoginService, RegisterService, DocumentService],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

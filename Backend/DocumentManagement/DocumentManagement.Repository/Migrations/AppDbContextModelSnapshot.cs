@@ -38,9 +38,33 @@ namespace DocumentManagement.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdentityId");
+                    b.HasIndex("IdentityId")
+                        .IsUnique()
+                        .HasFilter("[IdentityId] IS NOT NULL");
 
                     b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("DocumentManagement.Repository.Models.Document", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Descripion");
+
+                    b.Property<double>("FileSize");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("OwnerId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("DocumentManagement.Repository.Models.Identity.ApplicationRole", b =>
@@ -205,8 +229,16 @@ namespace DocumentManagement.Repository.Migrations
             modelBuilder.Entity("DocumentManagement.Repository.Models.Account", b =>
                 {
                     b.HasOne("DocumentManagement.Repository.Models.Identity.ApplicationUser", "Identity")
-                        .WithMany()
-                        .HasForeignKey("IdentityId");
+                        .WithOne("Account")
+                        .HasForeignKey("DocumentManagement.Repository.Models.Account", "IdentityId");
+                });
+
+            modelBuilder.Entity("DocumentManagement.Repository.Models.Document", b =>
+                {
+                    b.HasOne("DocumentManagement.Repository.Models.Account", "Owner")
+                        .WithMany("Documents")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

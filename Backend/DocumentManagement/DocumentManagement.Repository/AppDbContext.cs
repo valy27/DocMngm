@@ -5,24 +5,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DocumentManagement.Repository
 {
-  public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
-  {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
+
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Document> Documents { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.HasDefaultSchema("dbo");
+
+            modelBuilder.Entity<Account>(entity => { entity.HasKey(e => e.Id); });
+            modelBuilder.Entity<Document>(entity => { entity.HasKey(e => e.Id); });
+        }
     }
-
-    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-    public DbSet<ApplicationRole> ApplicationRoles { get; set; }
-
-    public DbSet<Account> Accounts { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-      base.OnModelCreating(modelBuilder);
-
-      modelBuilder.HasDefaultSchema("dbo");
-
-      modelBuilder.Entity<Account>(entity => { entity.HasKey(e => e.Id); });
-    }
-  }
 }
