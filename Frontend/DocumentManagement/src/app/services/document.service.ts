@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Http, Headers, ResponseContentType, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { CreateDocumentModel, DocumentModel } from '../shared/models/document.model';
@@ -65,5 +66,18 @@ export class DocumentService {
      const params = new HttpParams().set('id', id.toString());
      return this.http.delete(`${this._documentsEndpoint}/remove`, {params: params});
    }
+
+    saveFile(id): Observable<any> {
+    //   const headers = new Headers({
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/pdf'
+    //  });
+    const params = new HttpParams().set('id', id.toString());
+  //  headers.append('Accept', 'arraybuffer');
+    return this.http.get(`${environment.apiUrlBase}/files`, {
+      responseType: 'blob',
+      params: params
+     });
+    }
 
 }

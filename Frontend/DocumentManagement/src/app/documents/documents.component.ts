@@ -4,6 +4,8 @@ import { DocumentService } from '../services/document.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
+import {saveAs} from 'file-saver';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-documents',
@@ -59,6 +61,17 @@ export class DocumentsComponent implements OnInit {
       this.getDocuments();
     });
   }
+
+  save(id: number, name: string) {
+    this.documentService.saveFile(id).subscribe(response => {
+    const blob = new Blob([response]);
+        saveAs(blob, name);
+    });
+  }
+
+  private saveToFileSystem(response) {
+    console.log(response);
+    }
 
 }
 

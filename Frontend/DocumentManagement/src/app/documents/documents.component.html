@@ -12,6 +12,7 @@
      <p>Owner: {{document.ownerUserName}}</p>
      <p>Description: {{document.description}}</p>
     <button mat-raised-button color="warn" (click)="remove(document.id)">Remove</button>
+    <button mat-raised-button class="download-button" (click)="save(document.id, document.name)">Download</button>
   </mat-expansion-panel>
 </mat-accordion>
 

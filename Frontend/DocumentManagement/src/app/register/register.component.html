@@ -2,7 +2,7 @@
   register works!
 </p>
 
-<form [formGroup]="registerInfo" #f="ngForm" (ngSubmit)="register()" class="form-container">
+<form [formGroup]="registerInfo" (ngSubmit)="register()" class="form-container">
   <mat-form-field>
     <input formControlName="userName" matInput placeholder="Username">
   </mat-form-field>

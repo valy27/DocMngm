@@ -122,7 +122,9 @@ namespace DocumentManagement
                 builder.WithOrigins("*")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials());
+                    .AllowCredentials()
+                    .WithExposedHeaders("Content-Disposition"));
+           
 
             app.UseMvc();
         }
