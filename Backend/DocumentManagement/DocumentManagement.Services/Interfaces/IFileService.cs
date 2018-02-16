@@ -9,7 +9,8 @@ namespace DocumentManagement.Services.Interfaces
 {
     public interface IFileService
     {
-        Task UploadFiles(IFormFileCollection files);
+        Task<TaskStatus> UploadFiles(IFormFileCollection files);
+        TaskStatus RemoveFile(string name);
         (FileStream fileStream, string contentType, string documentName) GetFileForDownload(int id);
     }
 }

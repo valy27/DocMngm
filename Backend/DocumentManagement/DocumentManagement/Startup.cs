@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using AutoMapper;
 using DocumentManagement.Infrastructure.Jwt;
@@ -15,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DocumentManagement
@@ -38,6 +40,8 @@ namespace DocumentManagement
                 .AddDbContext<AppDbContext>(options => options.UseSqlServer(connection),
                     optionsLifetime: ServiceLifetime.Transient);
 
+            services.AddScoped<IDbInitializer, DbInitializer>();
+
             services.AddTransient<IGenericRepository<Account>, GenericRepository<Account>>();
             services.AddTransient<IGenericRepository<Document>, GenericRepository<Document>>();
 
@@ -48,8 +52,6 @@ namespace DocumentManagement
             services.AddTransient<IFileService, FileService>();
 
             services.AddAutoMapper();
-
-            //  var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtOptions));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
                 {
@@ -107,11 +109,15 @@ namespace DocumentManagement
                 options.AddPolicy("Authenticated", policy => policy.RequireClaim("rol", "api_access"));
             });
 
+            
+
             services.AddMvc();
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logegerFactory, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
@@ -124,7 +130,11 @@ namespace DocumentManagement
                     .AllowAnyMethod()
                     .AllowCredentials()
                     .WithExposedHeaders("Content-Disposition"));
-           
+
+            logegerFactory.AddFile(Path.GetFullPath(Path.Combine(System.IO.Directory.GetCurrentDirectory(),
+                @"Logs\appLogs.txt")));
+
+            dbInitializer.Initialize();
 
             app.UseMvc();
         }

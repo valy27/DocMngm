@@ -42,7 +42,7 @@ namespace DocumentManagement.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-           
+            _logger.LogInformation("GET ALL DOCUMENTS");
             var documents = _documentService.GetAll().ToList();
 
             var mappedDocuments = documents.Select(doc =>
@@ -54,31 +54,10 @@ namespace DocumentManagement.Controllers
 
             if (documents.Any())
             {
-               // _logger.LogInformation("Get all documents");
-               
                 return Ok(mappedDocuments);
             }
             return NotFound("No documents for user");
         }
-
-       
-
-        //[HttpPost]
-        //public IActionResult Create([FromBody] CreateDocumentViewModel document)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var mappedDocument = _mapper.Map<Document>(document);
-            
-        //    _documentService.Add(mappedDocument);
-
-        //    return Ok("Document created");
-        //}
-
-        
 
         [HttpDelete]
         public IActionResult Remove([FromQuery] int id)

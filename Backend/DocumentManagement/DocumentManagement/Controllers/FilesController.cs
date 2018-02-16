@@ -1,18 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using DocumentManagement.Services.Interfaces;
+﻿using DocumentManagement.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Net.Http.Headers;
-using System.Collections.Generic;
-using DocumentManagement.Infrastructure.FileHelper;
-using Microsoft.AspNetCore.Authorization;
 
 namespace DocumentManagement.Controllers
 {
@@ -21,18 +11,18 @@ namespace DocumentManagement.Controllers
     public class FilesController : Controller
     {
         private readonly IFileService _fileService;
-        private readonly IDocumentService _documentService;
 
-        public FilesController(IFileService fileService, IDocumentService documentService)
+        public FilesController(IFileService fileService)
         {
             _fileService = fileService;
-            _documentService = documentService;
         }
 
         [HttpPost, DisableRequestSizeLimit, Route("api/files")]
-        public async Task<IActionResult> UploadFiles(IFormFile files)
+        public IActionResult UploadFiles(IFormFile files)
         {
-            if (_fileService.UploadFiles(Request.Form.Files).IsCompletedSuccessfully)
+
+            var task = _fileService.UploadFiles(Request.Form.Files).Result;
+            if (task == TaskStatus.RanToCompletion)
             {
                 return Ok("File successfully uploaded");
             }
@@ -50,8 +40,9 @@ namespace DocumentManagement.Controllers
             {
                 return File(fileData.fileStream, fileData.contentType, fileData.documentName);
             }
+            
+            if (fileData.fileStream != null) fileData.fileStream.Dispose();
             Response.StatusCode = 404;
-            fileData.fileStream.Dispose();
             return null;
         }
     }

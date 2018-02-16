@@ -15,29 +15,19 @@ export class DocumentService {
     private router: Router) {
    }
 
-   create(documentInfo): Observable<any> {
-       const documentData: CreateDocumentModel = {
-         description: documentInfo.description
-       };
+  //  createDoc(documentInfo): Observable<any> {
+  //      const documentData: CreateDocumentModel = {
+  //        description: documentInfo.description
+  //      };
 
-       return this.http.post(`${this._documentsEndpoint}/create`, documentData, {
-        headers: new HttpHeaders().set(
-          'Content-Type',
-          'application/json;charset=utf-8;'
-        ),
-        responseType: 'text'
-       });
-   }
-
-  //  postFile(fileToUpload: FormData): Observable<any> {
-
-  //   return this.http
-  //     .post(`${environment.apiUrlBase}/files`, fileToUpload, {
-  //       headers: {
-  //         'Accept': 'application/json;charset=utf-8;'
-  //       }
-  //     });
-  //   }
+  //      return this.http.post(`${this._documentsEndpoint}/create`, documentData, {
+  //       headers: new HttpHeaders().set(
+  //         'Content-Type',
+  //         'application/json;charset=utf-8;'
+  //       ),
+  //       responseType: 'text'
+  //      });
+  //  }
 
     postFile(fileToUpload: FormData, documentInfo): Observable<any> {
       const documentData: CreateDocumentModel = {
@@ -46,16 +36,18 @@ export class DocumentService {
 
       fileToUpload.append('docInformation', new Blob([JSON.stringify(documentData)], {type: 'application/json'}));
 
-      const params = new HttpParams();
-      params.set('description', documentData.description);
+      // const params = new HttpParams();
+      // params.set('description', documentData.description);
 
       return this.http
-        .post(`${environment.apiUrlBase}/files`, fileToUpload, {
-          headers: {
-            'Accept': 'application/json;charset=utf-8;'
-          },
-          params: params
-        });
+        .post(`${environment.apiUrlBase}/files`, fileToUpload
+        // {
+        //   headers: {
+        //     'Accept': 'application/json;charset=utf-8;'
+        //   },
+        //   params: params
+        // }
+      );
       }
 
    getAll(): Observable<any> {

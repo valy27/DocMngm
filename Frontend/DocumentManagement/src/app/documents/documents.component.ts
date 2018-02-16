@@ -30,7 +30,9 @@ export class DocumentsComponent implements OnInit {
 
   getDocuments() {
     this.documentService.getAll().subscribe(response => {
-      this.documents = response;
+      if (response.length) {
+        this.documents = response;
+      }
     });
   }
 

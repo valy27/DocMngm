@@ -26,9 +26,9 @@ namespace DocumentManagement.Infrastructure.UserResolver
             return _userManager.FindByIdAsync(_context.HttpContext?.User?.Claims?.FirstOrDefault(c => c.Type =="id")?.Value).Result;
         }
 
-        public async Task<IList<string>> GetUserRoles(ApplicationUser user)
+        public  IEnumerable<string> GetUserRoles(ApplicationUser user)
         {
-            return await _userManager.GetRolesAsync(user);
+            return _userManager.GetRolesAsync(user).Result;
         }
     }
 }
