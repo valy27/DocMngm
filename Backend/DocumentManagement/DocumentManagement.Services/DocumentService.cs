@@ -24,7 +24,7 @@ namespace DocumentManagement.Services
 
         public void Add(Document document)
         {
-            var user = _userResolverService.GetUser().Result;
+            var user = _userResolverService.GetUser();
             if (user != null)
             {
                 document.Created = DateTime.Now;
@@ -35,7 +35,7 @@ namespace DocumentManagement.Services
 
         public IQueryable<Document> GetAll()
         {
-            var user = _userResolverService.GetUser().Result;
+            var user = _userResolverService.GetUser();
             if (user != null)
             {
                 var userRoles = _userResolverService.GetUserRoles(user).Result;
@@ -50,7 +50,7 @@ namespace DocumentManagement.Services
 
         public void Remove(int id)
         {
-            var user = _userResolverService.GetUser().Result;
+            var user = _userResolverService.GetUser();
             if (user == null) return;
             var userRoles = _userResolverService.GetUserRoles(user).Result;
             if (!userRoles.Any()) return;
@@ -69,6 +69,11 @@ namespace DocumentManagement.Services
         public bool Exists(int id)
         {
             return _documentRepository.GetById(id) != null;
+        }
+
+        public bool Exists(string name)
+        {
+            return _documentRepository.Get().Where(d => d.Name == name).FirstOrDefault() != null;
         }
     }
 }

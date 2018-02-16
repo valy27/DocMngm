@@ -12,5 +12,6 @@ namespace DocumentManagement.Services.Interfaces
         IQueryable<Document> GetAll();
         void Remove(int id);
         bool Exists(int id);
+        bool Exists(string name);
     }
 }

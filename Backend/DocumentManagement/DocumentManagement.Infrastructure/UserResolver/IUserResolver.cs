@@ -8,7 +8,7 @@ namespace DocumentManagement.Infrastructure.UserResolver
 {
     public interface IUserResolverService
     {
-        Task<ApplicationUser> GetUser();
+        ApplicationUser GetUser();
         Task<IList<string>> GetUserRoles(ApplicationUser user);
     }
 }

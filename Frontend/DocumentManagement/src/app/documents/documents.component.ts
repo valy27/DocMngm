@@ -34,13 +34,6 @@ export class DocumentsComponent implements OnInit {
     });
   }
 
-  createDocument() {
-    // this.documentService.create(this.documentInfo.value).subscribe(result => {
-    //   this.documentInfo.reset();
-    //   this.documentInfo.setErrors(null);
-    // });
-  }
-
   remove(id: number) {
     this.documentService.deleteDocument(id).subscribe(result => {
         this.documents = this.documents.filter(elm => elm.id !== id);
@@ -53,9 +46,6 @@ export class DocumentsComponent implements OnInit {
     });
     dialogRef.beforeClose().subscribe(result => {
         this.documentInfo = result;
-        if (this.documentInfo.valid === true) {
-          this.createDocument();
-        }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.getDocuments();
@@ -68,10 +58,6 @@ export class DocumentsComponent implements OnInit {
         saveAs(blob, name);
     });
   }
-
-  private saveToFileSystem(response) {
-    console.log(response);
-    }
 
 }
 

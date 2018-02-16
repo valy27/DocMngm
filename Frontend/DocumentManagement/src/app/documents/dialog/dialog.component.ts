@@ -32,7 +32,6 @@ export class DialogComponent {
     // this.handleFileInput(this.fileInput.nativeElement.files);
     this.dialogRef.close(form);
     this.documentService.postFile(this.formData, form).subscribe(result => {
-      console.log(result);
     });
   }
 

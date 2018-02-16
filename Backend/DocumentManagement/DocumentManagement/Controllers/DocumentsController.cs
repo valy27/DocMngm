@@ -8,6 +8,7 @@ using DocumentManagement.Services.Interfaces;
 using DocumentManagement.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace DocumentManagement.Controllers
 {
@@ -17,11 +18,13 @@ namespace DocumentManagement.Controllers
     {
         private readonly IDocumentService _documentService;
         private readonly IMapper _mapper;
+        private readonly ILogger<DocumentsController> _logger;
 
-        public DocumentsController(IDocumentService documentService, IMapper mapper)
+        public DocumentsController(IDocumentService documentService, IMapper mapper, ILogger<DocumentsController> logger)
         {
             _documentService = documentService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -39,6 +42,7 @@ namespace DocumentManagement.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
+           
             var documents = _documentService.GetAll().ToList();
 
             var mappedDocuments = documents.Select(doc =>
@@ -50,6 +54,8 @@ namespace DocumentManagement.Controllers
 
             if (documents.Any())
             {
+               // _logger.LogInformation("Get all documents");
+               
                 return Ok(mappedDocuments);
             }
             return NotFound("No documents for user");

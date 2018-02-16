@@ -1,0 +1,56 @@
+FilesController: Controller
+
+     [HttpGet, Route("api/files")]
+        public FileResult downloadFile([FromQuery] int id)
+        {
+            var docName = _documentService.GetAll().Where(d => d.Id == id).FirstOrDefault().Name;
+
+            IFileProvider provider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Uploads")));
+            IFileInfo fileInfo = provider.GetFileInfo(docName);
+            var readStream = fileInfo.CreateReadStream();
+            var mimeType = "application/octet-stream";
+            return File(readStream, mimeType, docName);
+        }
+
+
+
+Doc Component
+  
+   private saveToFileSystem(response) {
+
+//    const contentDispositionHeader: string = response.headers.get('Content-Disposition');
+
+//    const parts: string[] = contentDispositionHeader.split(';');
+
+//    const filename = parts[1].split('=')[1];
+   
+ var blob = new Blob([(<any>response)._body], { type: 'contentType' });
+    
+saveAs(blob, 'fsfsdfsd');
+  
+}
+
+
+DOc service
+
+      deleteDocument(id: number): Observable<any> {
+    
+ const params = new HttpParams().set('id', id.toString());
+    
+return this.http.delete(`${this._documentsEndpoint}/remove`, {params: params});
+   
+}
+
+  
+
+ saveFile(id):Observable<any> {
+    
+const headers = new HttpHeaders();
+   
+ const params = new HttpParams().set('id', id.toString());
+   
+ headers.append('Accept', 'application/octet-stream');
+   
+ return this.http.get(`${environment.apiUrlBase}/files`, {params:params,headers:headers, responseType: 'blob'});
+ 
+ }

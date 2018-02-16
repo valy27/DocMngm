@@ -45,7 +45,7 @@ namespace DocumentManagement
             services.AddTransient<IJwtService, JwtService>();
             services.AddTransient<IDocumentService, DocumentService>();
             services.AddTransient<IUserResolverService, UserResolverService>();
-            services.AddTransient<IFileUploadService, FileUploadService>();
+            services.AddTransient<IFileService, FileService>();
 
             services.AddAutoMapper();
 
