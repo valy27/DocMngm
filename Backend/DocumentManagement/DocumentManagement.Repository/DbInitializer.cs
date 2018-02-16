@@ -38,6 +38,8 @@ namespace DocumentManagement.Repository
                 //Create the Administartor Role
                 _roleManager.CreateAsync(new ApplicationRole {Name = "Admin", NormalizedName = "Administrator"})
                     .GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new ApplicationRole { Name = "User", NormalizedName = "User" })
+                    .GetAwaiter().GetResult();
 
                 //Create the default Admin account and apply the Administrator role
                 string user = "admin";

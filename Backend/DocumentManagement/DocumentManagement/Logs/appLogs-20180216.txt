@@ -6838,3 +6838,874 @@ END" (0723d8ff)
 2018-02-16T18:18:21.8801508+02:00 0HLBLB3IT6745:00000002 [INF] Request finished in 3.7768ms 404  (791a596a)
 2018-02-16T18:25:39.2428641+02:00 0HLBLB3IT6746:00000001 [INF] Request starting HTTP/1.1 POST http://127.0.0.1:21286/iisintegration  0 (ca22a1cb)
 2018-02-16T18:25:39.2453725+02:00 0HLBLB3IT6746:00000001 [INF] Request finished in 2.3364ms 202  (791a596a)
+2018-02-16T18:43:15.3072471+02:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:43:25.7833303+02:00  [INF] Executed DbCommand ("270"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""CREATE DATABASE [DocumentManagement];" (0723d8ff)
+2018-02-16T18:43:25.8484330+02:00  [INF] Executed DbCommand ("62"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [DocumentManagement] SET READ_COMMITTED_SNAPSHOT ON;');" (0723d8ff)
+2018-02-16T18:43:25.8855577+02:00  [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);" (0723d8ff)
+2018-02-16T18:43:25.8912993+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'__EFMigrationsHistory');" (0723d8ff)
+2018-02-16T18:43:25.8950017+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2018-02-16T18:43:25.9019702+02:00  [INF] Applying migration '"20180213183026_Initial"'. (0e2ac64d)
+2018-02-16T18:43:25.9640954+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);" (0723d8ff)
+2018-02-16T18:43:25.9684570+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[AspNetUsers] (
+    [Id] nvarchar(450) NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [Email] nvarchar(256) NULL,
+    [EmailConfirmed] bit NOT NULL,
+    [LockoutEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset NULL,
+    [NormalizedEmail] nvarchar(256) NULL,
+    [NormalizedUserName] nvarchar(256) NULL,
+    [PasswordHash] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [SecurityStamp] nvarchar(max) NULL,
+    [TwoFactorEnabled] bit NOT NULL,
+    [UserName] nvarchar(256) NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+);" (0723d8ff)
+2018-02-16T18:43:25.9731693+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    [RoleId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[AspNetRoles] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2018-02-16T18:43:25.9774304+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[Accounts] (
+    [Id] int NOT NULL IDENTITY,
+    [Age] int NOT NULL,
+    [FirstName] nvarchar(max) NULL,
+    [IdentityId] nvarchar(450) NULL,
+    [LastName] nvarchar(max) NULL,
+    [Registerd] datetime2 NOT NULL,
+    CONSTRAINT [PK_Accounts] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Accounts_AspNetUsers_IdentityId] FOREIGN KEY ([IdentityId]) REFERENCES [dbo].[AspNetUsers] ([Id]) ON DELETE NO ACTION
+);" (0723d8ff)
+2018-02-16T18:43:25.9817278+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2018-02-16T18:43:25.9880195+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[AspNetUserLogins] (
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [ProviderKey] nvarchar(450) NOT NULL,
+    [ProviderDisplayName] nvarchar(max) NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2018-02-16T18:43:25.9934077+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[AspNetUserRoles] (
+    [UserId] nvarchar(450) NOT NULL,
+    [RoleId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2018-02-16T18:43:25.9975870+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[AspNetUserTokens] (
+    [UserId] nvarchar(450) NOT NULL,
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [Name] nvarchar(450) NOT NULL,
+    [Value] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2018-02-16T18:43:26.0023869+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[Documents] (
+    [Id] int NOT NULL IDENTITY,
+    [Created] datetime2 NOT NULL,
+    [FileSize] float NOT NULL,
+    [Name] nvarchar(max) NULL,
+    [OwnerId] int NOT NULL,
+    CONSTRAINT [PK_Documents] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Documents_Accounts_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [dbo].[Accounts] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2018-02-16T18:43:26.0056848+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE UNIQUE INDEX [IX_Accounts_IdentityId] ON [dbo].[Accounts] ([IdentityId]) WHERE [IdentityId] IS NOT NULL;" (0723d8ff)
+2018-02-16T18:43:26.0081465+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [dbo].[AspNetRoleClaims] ([RoleId]);" (0723d8ff)
+2018-02-16T18:43:26.0112834+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE UNIQUE INDEX [RoleNameIndex] ON [dbo].[AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL;" (0723d8ff)
+2018-02-16T18:43:26.0139462+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserClaims_UserId] ON [dbo].[AspNetUserClaims] ([UserId]);" (0723d8ff)
+2018-02-16T18:43:26.0163581+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserLogins_UserId] ON [dbo].[AspNetUserLogins] ([UserId]);" (0723d8ff)
+2018-02-16T18:43:26.0194434+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [dbo].[AspNetUserRoles] ([RoleId]);" (0723d8ff)
+2018-02-16T18:43:26.0221031+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [EmailIndex] ON [dbo].[AspNetUsers] ([NormalizedEmail]);" (0723d8ff)
+2018-02-16T18:43:26.0246055+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE UNIQUE INDEX [UserNameIndex] ON [dbo].[AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;" (0723d8ff)
+2018-02-16T18:43:26.0269873+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_Documents_OwnerId] ON [dbo].[Documents] ([OwnerId]);" (0723d8ff)
+2018-02-16T18:43:26.0305254+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20180213183026_Initial', N'2.0.1-rtm-125');" (0723d8ff)
+2018-02-16T18:43:26.0335020+02:00  [INF] Applying migration '"20180214164145_AddDocumentDescription"'. (0e2ac64d)
+2018-02-16T18:43:26.0500245+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [dbo].[Documents] ADD [Descripion] nvarchar(max) NULL;" (0723d8ff)
+2018-02-16T18:43:26.0538977+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20180214164145_AddDocumentDescription', N'2.0.1-rtm-125');" (0723d8ff)
+2018-02-16T18:43:26.1400885+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[AspNetRoles] AS [r]
+        WHERE [r].[Name] = N'Admin')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-02-16T18:43:26.2209334+02:00  [INF] Executed DbCommand ("33"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-02-16T18:43:26.2939594+02:00  [INF] Executed DbCommand ("8"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+VALUES (@p0, @p1, @p2, @p3);" (0723d8ff)
+2018-02-16T18:43:26.3122188+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-02-16T18:43:26.3247826+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+VALUES (@p0, @p1, @p2, @p3);" (0723d8ff)
+2018-02-16T18:43:26.3741052+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:43:26.4181952+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (Size = 450), @p1='?', @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?', @p5='?', @p6='?', @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?', @p12='?' (Size = 4000), @p13='?', @p14='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);" (0723d8ff)
+2018-02-16T18:43:26.4301694+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:43:26.4518598+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2018-02-16T18:43:26.4849183+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?' (Size = 450), @__get_Item_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[UserId], [e].[RoleId]
+FROM [dbo].[AspNetUserRoles] AS [e]
+WHERE ([e].[UserId] = @__get_Item_0) AND ([e].[RoleId] = @__get_Item_1)" (0723d8ff)
+2018-02-16T18:43:26.4962716+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2018-02-16T18:43:26.5114560+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:43:26.5384024+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p16='?' (Size = 450), @p2='?', @p3='?' (Size = 4000), @p17='?' (Size = 4000), @p4='?' (Size = 256), @p5='?', @p6='?', @p7='?', @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?', @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);
+UPDATE [dbo].[AspNetUsers] SET [AccessFailedCount] = @p2, [ConcurrencyStamp] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-02-16T18:43:26.5475747+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Accounts] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-02-16T18:43:31.3033216+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:43:31.6362308+02:00 0HLBLBHKSP3OL:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api   (ca22a1cb)
+2018-02-16T18:43:31.7736560+02:00 0HLBLBHKSP3OL:00000001 [INF] Request finished in 155.8645ms 404  (791a596a)
+2018-02-16T18:43:31.7937322+02:00 0HLBLBHKSP3OL:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:53938/favicon.ico   (ca22a1cb)
+2018-02-16T18:43:31.7974798+02:00 0HLBLBHKSP3OL:00000002 [INF] Request finished in 4.2351ms 404  (791a596a)
+2018-02-16T18:45:31.6113532+02:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:45:31.8017715+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'__EFMigrationsHistory');" (0723d8ff)
+2018-02-16T18:45:31.8072378+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'__EFMigrationsHistory');" (0723d8ff)
+2018-02-16T18:45:31.8129738+02:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2018-02-16T18:45:31.8204259+02:00  [INF] No migrations were applied. The database is already up to date. (503cba9d)
+2018-02-16T18:45:31.9228223+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[AspNetRoles] AS [r]
+        WHERE [r].[Name] = N'Admin')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-02-16T18:45:32.3999475+02:00 0HLBLBIOSG4FF:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api   (ca22a1cb)
+2018-02-16T18:45:32.5466473+02:00 0HLBLBIOSG4FF:00000001 [INF] Request finished in 165.3704ms 404  (791a596a)
+2018-02-16T18:45:32.5687504+02:00 0HLBLBIOSG4FF:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:53938/favicon.ico   (ca22a1cb)
+2018-02-16T18:45:32.5728666+02:00 0HLBLBIOSG4FF:00000002 [INF] Request finished in 3.9214ms 404  (791a596a)
+2018-02-16T18:46:29.6642441+02:00 0HLBLBIOSG4FF:00000003 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/accounts/login   (ca22a1cb)
+2018-02-16T18:46:29.6674767+02:00 0HLBLBIOSG4FF:00000003 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:29.6707721+02:00 0HLBLBIOSG4FF:00000003 [INF] Request finished in 7.02ms 204  (791a596a)
+2018-02-16T18:46:29.6776818+02:00 0HLBLBIOSG4FF:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/accounts/login application/json;charset=UTF-8; 38 (ca22a1cb)
+2018-02-16T18:46:29.6804408+02:00 0HLBLBIOSG4FF:00000004 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:29.7742117+02:00 0HLBLBIOSG4FF:00000004 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:46:29.8853992+02:00 0HLBLBIOSG4FF:00000004 [INF] Executing action method "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" with arguments (["DocumentManagement.ViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:46:29.9733556+02:00 0HLBLBIOSG4FF:00000004 [INF] Executed DbCommand ("42"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:46:30.0708219+02:00 0HLBLBIOSG4FF:00000004 [INF] Executed DbCommand ("10"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:46:30.1175098+02:00 0HLBLBIOSG4FF:00000004 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:46:30.1422408+02:00 0HLBLBIOSG4FF:00000004 [INF] Executed action "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" in 384.4168ms (afa2e885)
+2018-02-16T18:46:30.1469212+02:00 0HLBLBIOSG4FF:00000004 [INF] Request finished in 470.4615ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:46:30.1741446+02:00 0HLBLBIOSG4FF:00000005 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:46:30.1762716+02:00 0HLBLBIOSG4FF:00000005 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:30.1785787+02:00 0HLBLBIOSG4FF:00000005 [INF] Request finished in 5.0066ms 204  (791a596a)
+2018-02-16T18:46:30.1836739+02:00 0HLBLBIOSG4FF:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:46:30.2307997+02:00 0HLBLBIOSG4FF:00000006 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:46:30.2341851+02:00 0HLBLBIOSG4FF:00000006 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:46:30.2373496+02:00 0HLBLBIOSG4FF:00000006 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:30.2491442+02:00 0HLBLBIOSG4FF:00000006 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:46:30.2520198+02:00 0HLBLBIOSG4FF:00000006 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:46:30.2566256+02:00 0HLBLBIOSG4FF:00000006 [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:46:30.2604798+02:00 0HLBLBIOSG4FF:00000006 [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:46:30.2796097+02:00 0HLBLBIOSG4FF:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:46:30.2881609+02:00 0HLBLBIOSG4FF:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:46:30.3523287+02:00 0HLBLBIOSG4FF:00000006 [INF] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:46:30.3565225+02:00 0HLBLBIOSG4FF:00000006 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:46:30.3591010+02:00 0HLBLBIOSG4FF:00000006 [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 116.8082ms (afa2e885)
+2018-02-16T18:46:30.3616147+02:00 0HLBLBIOSG4FF:00000006 [INF] Request finished in 177.5396ms 404 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:46:38.4823141+02:00 0HLBLBIOSG4FF:00000007 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/files   (ca22a1cb)
+2018-02-16T18:46:38.4848498+02:00 0HLBLBIOSG4FF:00000007 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:38.4879061+02:00 0HLBLBIOSG4FF:00000007 [INF] Request finished in 5.5083ms 204  (791a596a)
+2018-02-16T18:46:38.4988970+02:00 0HLBLBIOSG4FF:00000008 [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/files multipart/form-data; boundary=----WebKitFormBoundarySvWQO62uoRgPAacK 12932766 (ca22a1cb)
+2018-02-16T18:46:38.5043434+02:00 0HLBLBIOSG4FF:00000008 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:46:38.5091084+02:00 0HLBLBIOSG4FF:00000008 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:46:38.5127494+02:00 0HLBLBIOSG4FF:00000008 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:38.5280635+02:00 0HLBLBIOSG4FF:00000008 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:46:38.5319346+02:00 0HLBLBIOSG4FF:00000008 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:46:38.8989634+02:00 0HLBLBIOSG4FH:00000001 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:46:38.9019708+02:00 0HLBLBIOSG4FH:00000001 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:38.9051675+02:00 0HLBLBIOSG4FH:00000001 [INF] Request finished in 6.531ms 204  (791a596a)
+2018-02-16T18:46:38.9128032+02:00 0HLBLBIOSG4FH:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:46:38.9160107+02:00 0HLBLBIOSG4FH:00000002 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:46:38.9200488+02:00 0HLBLBIOSG4FH:00000002 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:46:38.9225545+02:00 0HLBLBIOSG4FH:00000002 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:38.9252112+02:00 0HLBLBIOSG4FH:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:46:38.9283783+02:00 0HLBLBIOSG4FH:00000002 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:46:38.9322328+02:00 0HLBLBIOSG4FH:00000002 [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:46:38.9357728+02:00 0HLBLBIOSG4FH:00000002 [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:46:38.9428400+02:00 0HLBLBIOSG4FH:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:46:38.9487064+02:00 0HLBLBIOSG4FH:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:46:38.9537227+02:00 0HLBLBIOSG4FH:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:46:38.9561748+02:00 0HLBLBIOSG4FH:00000002 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:46:38.9590775+02:00 0HLBLBIOSG4FH:00000002 [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 33.3374ms (afa2e885)
+2018-02-16T18:46:38.9620952+02:00 0HLBLBIOSG4FH:00000002 [INF] Request finished in 50.9528ms 404 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:46:39.0046980+02:00 0HLBLBIOSG4FF:00000008 [INF] Executing action method "DocumentManagement.Controllers.FilesController.UploadFiles (DocumentManagement)" with arguments ([""]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:46:39.0167362+02:00 0HLBLBIOSG4FF:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:46:39.0373667+02:00 0HLBLBIOSG4FF:00000008 [INF] Executed DbCommand ("1"ms) [Parameters=["@__Format_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Documents] AS [d]
+        WHERE [d].[Name] = @__Format_0)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-02-16T18:46:39.0700120+02:00 0HLBLBIOSG4FF:00000008 [INF] Executed DbCommand ("4"ms) [Parameters=["@__identityId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Age], [a].[FirstName], [a].[IdentityId], [a].[LastName], [a].[Registerd]
+FROM [dbo].[Accounts] AS [a]
+WHERE [a].[IdentityId] = @__identityId_0" (0723d8ff)
+2018-02-16T18:46:39.1821374+02:00 0HLBLBIOSG4FF:00000008 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?', @p1='?' (Size = 4000), @p2='?', @p3='?' (Size = 4000), @p4='?'"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[Documents] ([Created], [Descripion], [FileSize], [Name], [OwnerId])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [dbo].[Documents]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-02-16T18:46:39.1955250+02:00 0HLBLBIOSG4FF:00000008 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:46:39.1978424+02:00 0HLBLBIOSG4FF:00000008 [INF] Executed action "DocumentManagement.Controllers.FilesController.UploadFiles (DocumentManagement)" in 672.595ms (afa2e885)
+2018-02-16T18:46:39.2023939+02:00 0HLBLBIOSG4FF:00000008 [INF] Request finished in 704.421ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:46:42.8504015+02:00 0HLBLBIOSG4FH:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:46:42.8542107+02:00 0HLBLBIOSG4FH:00000003 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:46:42.8574742+02:00 0HLBLBIOSG4FH:00000003 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:46:42.8609734+02:00 0HLBLBIOSG4FH:00000003 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:42.8639862+02:00 0HLBLBIOSG4FH:00000003 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:46:42.8672192+02:00 0HLBLBIOSG4FH:00000003 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:46:42.8697264+02:00 0HLBLBIOSG4FH:00000003 [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:46:42.8719810+02:00 0HLBLBIOSG4FH:00000003 [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:46:42.8788813+02:00 0HLBLBIOSG4FH:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:46:42.8864418+02:00 0HLBLBIOSG4FH:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:46:42.8953320+02:00 0HLBLBIOSG4FH:00000003 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:46:42.9099548+02:00 0HLBLBIOSG4FH:00000003 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:46:42.9440752+02:00 0HLBLBIOSG4FH:00000003 [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 80.5101ms (afa2e885)
+2018-02-16T18:46:42.9469251+02:00 0HLBLBIOSG4FH:00000003 [INF] Request finished in 96.6666ms 200 application/json; charset=utf-8 (791a596a)
+2018-02-16T18:46:50.0585261+02:00 0HLBLBIOSG4FF:00000009 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/files   (ca22a1cb)
+2018-02-16T18:46:50.0619951+02:00 0HLBLBIOSG4FF:00000009 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:50.0652788+02:00 0HLBLBIOSG4FF:00000009 [INF] Request finished in 6.6179ms 204  (791a596a)
+2018-02-16T18:46:50.0739686+02:00 0HLBLBIOSG4FH:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/files multipart/form-data; boundary=----WebKitFormBoundarytYvxIFjrM6B7Nty5 73598 (ca22a1cb)
+2018-02-16T18:46:50.0762648+02:00 0HLBLBIOSG4FH:00000004 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:46:50.0781819+02:00 0HLBLBIOSG4FH:00000004 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:46:50.0801117+02:00 0HLBLBIOSG4FH:00000004 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:50.0823491+02:00 0HLBLBIOSG4FH:00000004 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:46:50.0854248+02:00 0HLBLBIOSG4FH:00000004 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:46:50.0931117+02:00 0HLBLBIOSG4FH:00000004 [INF] Executing action method "DocumentManagement.Controllers.FilesController.UploadFiles (DocumentManagement)" with arguments ([""]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:46:50.0997536+02:00 0HLBLBIOSG4FH:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:46:50.1099859+02:00 0HLBLBIOSG4FH:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__Format_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Documents] AS [d]
+        WHERE [d].[Name] = @__Format_0)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-02-16T18:46:50.1171159+02:00 0HLBLBIOSG4FH:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@__identityId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Age], [a].[FirstName], [a].[IdentityId], [a].[LastName], [a].[Registerd]
+FROM [dbo].[Accounts] AS [a]
+WHERE [a].[IdentityId] = @__identityId_0" (0723d8ff)
+2018-02-16T18:46:50.1261911+02:00 0HLBLBIOSG4FH:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?', @p1='?' (Size = 4000), @p2='?', @p3='?' (Size = 4000), @p4='?'"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[Documents] ([Created], [Descripion], [FileSize], [Name], [OwnerId])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [dbo].[Documents]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-02-16T18:46:50.1307698+02:00 0HLBLBIOSG4FH:00000004 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:46:50.1336942+02:00 0HLBLBIOSG4FH:00000004 [INF] Executed action "DocumentManagement.Controllers.FilesController.UploadFiles (DocumentManagement)" in 50.7313ms (afa2e885)
+2018-02-16T18:46:50.1379283+02:00 0HLBLBIOSG4FH:00000004 [INF] Request finished in 63.6584ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:46:50.4474523+02:00 0HLBLBIOSG4FF:0000000A [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:46:50.4500909+02:00 0HLBLBIOSG4FF:0000000A [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:50.4539677+02:00 0HLBLBIOSG4FF:0000000A [INF] Request finished in 5.5593ms 204  (791a596a)
+2018-02-16T18:46:50.4595385+02:00 0HLBLBIOSG4FH:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:46:50.4618497+02:00 0HLBLBIOSG4FH:00000005 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:46:50.4646479+02:00 0HLBLBIOSG4FH:00000005 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:46:50.4669810+02:00 0HLBLBIOSG4FH:00000005 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:46:50.4705713+02:00 0HLBLBIOSG4FH:00000005 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:46:50.4736132+02:00 0HLBLBIOSG4FH:00000005 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:46:50.4758141+02:00 0HLBLBIOSG4FH:00000005 [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:46:50.4777868+02:00 0HLBLBIOSG4FH:00000005 [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:46:50.4825469+02:00 0HLBLBIOSG4FH:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:46:50.4900292+02:00 0HLBLBIOSG4FH:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:46:50.4968105+02:00 0HLBLBIOSG4FH:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:46:50.4998759+02:00 0HLBLBIOSG4FH:00000005 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:46:50.5042888+02:00 0HLBLBIOSG4FH:00000005 [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 34.0652ms (afa2e885)
+2018-02-16T18:46:50.5073922+02:00 0HLBLBIOSG4FH:00000005 [INF] Request finished in 47.2028ms 200 application/json; charset=utf-8 (791a596a)
+2018-02-16T18:47:15.0226975+02:00 0HLBLBIOSG4FF:0000000B [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/accounts/create   (ca22a1cb)
+2018-02-16T18:47:15.0248627+02:00 0HLBLBIOSG4FF:0000000B [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:15.0272173+02:00 0HLBLBIOSG4FF:0000000B [INF] Request finished in 4.6788ms 204  (791a596a)
+2018-02-16T18:47:15.0327872+02:00 0HLBLBIOSG4FH:00000006 [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/accounts/create application/json;charset=UTF-8; 97 (ca22a1cb)
+2018-02-16T18:47:15.0351136+02:00 0HLBLBIOSG4FH:00000006 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:47:15.0371280+02:00 0HLBLBIOSG4FH:00000006 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:47:15.0390985+02:00 0HLBLBIOSG4FH:00000006 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:15.0435960+02:00 0HLBLBIOSG4FH:00000006 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:47:15.0464178+02:00 0HLBLBIOSG4FH:00000006 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:47:15.0644038+02:00 0HLBLBIOSG4FH:00000006 [INF] Executing action method "DocumentManagement.Controllers.AccountsController.Create (DocumentManagement)" with arguments (["DocumentManagement.ViewModels.RegisterViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:47:15.1059046+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:47:15.1307733+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (Size = 450), @p1='?', @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?', @p5='?', @p6='?', @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?', @p12='?' (Size = 4000), @p13='?', @p14='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);" (0723d8ff)
+2018-02-16T18:47:15.1481808+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-02-16T18:47:15.1691597+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2018-02-16T18:47:15.1818039+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450), @__get_Item_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[UserId], [e].[RoleId]
+FROM [dbo].[AspNetUserRoles] AS [e]
+WHERE ([e].[UserId] = @__get_Item_0) AND ([e].[RoleId] = @__get_Item_1)" (0723d8ff)
+2018-02-16T18:47:15.1869397+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("0"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2018-02-16T18:47:15.1956856+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("0"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:47:15.2093530+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("4"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p16='?' (Size = 450), @p2='?', @p3='?' (Size = 4000), @p17='?' (Size = 4000), @p4='?' (Size = 256), @p5='?', @p6='?', @p7='?', @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?', @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);
+UPDATE [dbo].[AspNetUsers] SET [AccessFailedCount] = @p2, [ConcurrencyStamp] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-02-16T18:47:15.2203695+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?', @p1='?' (Size = 4000), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?'"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[Accounts] ([Age], [FirstName], [IdentityId], [LastName], [Registerd])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [dbo].[Accounts]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-02-16T18:47:15.2269528+02:00 0HLBLBIOSG4FH:00000006 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:47:15.2290360+02:00 0HLBLBIOSG4FH:00000006 [INF] Executed action "DocumentManagement.Controllers.AccountsController.Create (DocumentManagement)" in 185.8232ms (afa2e885)
+2018-02-16T18:47:15.2313621+02:00 0HLBLBIOSG4FH:00000006 [INF] Request finished in 198.9098ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:47:31.8692323+02:00 0HLBLBIOSG4FF:0000000C [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/accounts/login   (ca22a1cb)
+2018-02-16T18:47:31.8713043+02:00 0HLBLBIOSG4FF:0000000C [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:31.8739416+02:00 0HLBLBIOSG4FF:0000000C [INF] Request finished in 4.4358ms 204  (791a596a)
+2018-02-16T18:47:31.8798147+02:00 0HLBLBIOSG4FH:00000007 [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/accounts/login application/json;charset=UTF-8; 37 (ca22a1cb)
+2018-02-16T18:47:31.8817252+02:00 0HLBLBIOSG4FH:00000007 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:31.8840573+02:00 0HLBLBIOSG4FH:00000007 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:47:31.8862015+02:00 0HLBLBIOSG4FH:00000007 [INF] Executing action method "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" with arguments (["DocumentManagement.ViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:47:31.8910883+02:00 0HLBLBIOSG4FH:00000007 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:47:31.9037180+02:00 0HLBLBIOSG4FH:00000007 [INF] Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:47:31.9059793+02:00 0HLBLBIOSG4FH:00000007 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:47:31.9080373+02:00 0HLBLBIOSG4FH:00000007 [INF] Executed action "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" in 24.1796ms (afa2e885)
+2018-02-16T18:47:31.9103774+02:00 0HLBLBIOSG4FH:00000007 [INF] Request finished in 30.7629ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:47:31.9253965+02:00 0HLBLBIOSG4FF:0000000D [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:47:31.9271820+02:00 0HLBLBIOSG4FF:0000000D [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:31.9293489+02:00 0HLBLBIOSG4FF:0000000D [INF] Request finished in 4.4421ms 204  (791a596a)
+2018-02-16T18:47:31.9354971+02:00 0HLBLBIOSG4FH:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:47:31.9377240+02:00 0HLBLBIOSG4FH:00000008 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:47:31.9397417+02:00 0HLBLBIOSG4FH:00000008 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:47:31.9416180+02:00 0HLBLBIOSG4FH:00000008 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:31.9438172+02:00 0HLBLBIOSG4FH:00000008 [INF] Authorization was successful for user: "user". (d7eb274a)
+2018-02-16T18:47:31.9463036+02:00 0HLBLBIOSG4FH:00000008 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:47:31.9482267+02:00 0HLBLBIOSG4FH:00000008 [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:47:31.9499540+02:00 0HLBLBIOSG4FH:00000008 [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:47:31.9550018+02:00 0HLBLBIOSG4FH:00000008 [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:47:31.9598071+02:00 0HLBLBIOSG4FH:00000008 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:47:31.9823593+02:00 0HLBLBIOSG4FH:00000008 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+WHERE [d.Owner].[IdentityId] = @__user_Id_0
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:47:31.9843105+02:00 0HLBLBIOSG4FH:00000008 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:47:31.9869904+02:00 0HLBLBIOSG4FH:00000008 [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 42.5526ms (afa2e885)
+2018-02-16T18:47:31.9949922+02:00 0HLBLBIOSG4FH:00000008 [INF] Request finished in 53.9775ms 404 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:47:51.3531863+02:00 0HLBLBIOSG4FF:0000000E [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/files   (ca22a1cb)
+2018-02-16T18:47:51.3557630+02:00 0HLBLBIOSG4FF:0000000E [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:51.3588396+02:00 0HLBLBIOSG4FF:0000000E [INF] Request finished in 5.5527ms 204  (791a596a)
+2018-02-16T18:47:51.3714635+02:00 0HLBLBIOSG4FH:00000009 [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/files multipart/form-data; boundary=----WebKitFormBoundary7JEAv5fGz2cglnQ4 8116442 (ca22a1cb)
+2018-02-16T18:47:51.3777706+02:00 0HLBLBIOSG4FH:00000009 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:47:51.3821419+02:00 0HLBLBIOSG4FH:00000009 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:47:51.3855886+02:00 0HLBLBIOSG4FH:00000009 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:51.3896302+02:00 0HLBLBIOSG4FH:00000009 [INF] Authorization was successful for user: "user". (d7eb274a)
+2018-02-16T18:47:51.3932879+02:00 0HLBLBIOSG4FH:00000009 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:47:51.6826549+02:00 0HLBLBIOSG4FH:00000009 [INF] Executing action method "DocumentManagement.Controllers.FilesController.UploadFiles (DocumentManagement)" with arguments ([""]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:47:51.6897933+02:00 0HLBLBIOSG4FH:00000009 [INF] Executed DbCommand ("3"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:47:51.7013871+02:00 0HLBLBIOSG4FH:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=["@__Format_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Documents] AS [d]
+        WHERE [d].[Name] = @__Format_0)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-02-16T18:47:51.7106183+02:00 0HLBLBIOSG4FH:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=["@__identityId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Age], [a].[FirstName], [a].[IdentityId], [a].[LastName], [a].[Registerd]
+FROM [dbo].[Accounts] AS [a]
+WHERE [a].[IdentityId] = @__identityId_0" (0723d8ff)
+2018-02-16T18:47:51.7155208+02:00 0HLBLBIOSG4FH:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?', @p1='?' (Size = 4000), @p2='?', @p3='?' (Size = 4000), @p4='?'"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [dbo].[Documents] ([Created], [Descripion], [FileSize], [Name], [OwnerId])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [dbo].[Documents]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-02-16T18:47:51.7197424+02:00 0HLBLBIOSG4FH:00000009 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:47:51.7224344+02:00 0HLBLBIOSG4FH:00000009 [INF] Executed action "DocumentManagement.Controllers.FilesController.UploadFiles (DocumentManagement)" in 333.7211ms (afa2e885)
+2018-02-16T18:47:51.7269252+02:00 0HLBLBIOSG4FH:00000009 [INF] Request finished in 360.0675ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:47:51.7428862+02:00 0HLBLBIOSG4FF:0000000F [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:47:51.7453651+02:00 0HLBLBIOSG4FF:0000000F [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:51.7476164+02:00 0HLBLBIOSG4FF:0000000F [INF] Request finished in 4.9994ms 204  (791a596a)
+2018-02-16T18:47:51.7532560+02:00 0HLBLBIOSG4FH:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:47:51.7559209+02:00 0HLBLBIOSG4FH:0000000A [INF] Successfully validated the token. (60169667)
+2018-02-16T18:47:51.7577439+02:00 0HLBLBIOSG4FH:0000000A [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:47:51.7595493+02:00 0HLBLBIOSG4FH:0000000A [INF] Policy execution successful. (0204925d)
+2018-02-16T18:47:51.7614293+02:00 0HLBLBIOSG4FH:0000000A [INF] Authorization was successful for user: "user". (d7eb274a)
+2018-02-16T18:47:51.7634816+02:00 0HLBLBIOSG4FH:0000000A [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:47:51.7652874+02:00 0HLBLBIOSG4FH:0000000A [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:47:51.7673706+02:00 0HLBLBIOSG4FH:0000000A [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:47:51.7720827+02:00 0HLBLBIOSG4FH:0000000A [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:47:51.7774730+02:00 0HLBLBIOSG4FH:0000000A [INF] Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:47:51.7833358+02:00 0HLBLBIOSG4FH:0000000A [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+WHERE [d.Owner].[IdentityId] = @__user_Id_0
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:47:51.7877203+02:00 0HLBLBIOSG4FH:0000000A [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:47:51.7899408+02:00 0HLBLBIOSG4FH:0000000A [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 28.1892ms (afa2e885)
+2018-02-16T18:47:51.7922550+02:00 0HLBLBIOSG4FH:0000000A [INF] Request finished in 39.4423ms 200 application/json; charset=utf-8 (791a596a)
+2018-02-16T18:48:05.5888511+02:00 0HLBLBIOSG4FF:00000010 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/accounts/login   (ca22a1cb)
+2018-02-16T18:48:05.5912545+02:00 0HLBLBIOSG4FF:00000010 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:05.5938705+02:00 0HLBLBIOSG4FF:00000010 [INF] Request finished in 5.08ms 204  (791a596a)
+2018-02-16T18:48:05.5996946+02:00 0HLBLBIOSG4FH:0000000B [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/accounts/login application/json;charset=UTF-8; 38 (ca22a1cb)
+2018-02-16T18:48:05.6016061+02:00 0HLBLBIOSG4FH:0000000B [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:05.6040514+02:00 0HLBLBIOSG4FH:0000000B [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:05.6061309+02:00 0HLBLBIOSG4FH:0000000B [INF] Executing action method "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" with arguments (["DocumentManagement.ViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:05.6104515+02:00 0HLBLBIOSG4FH:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:48:05.6224505+02:00 0HLBLBIOSG4FH:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:05.6247471+02:00 0HLBLBIOSG4FH:0000000B [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:48:05.6269673+02:00 0HLBLBIOSG4FH:0000000B [INF] Executed action "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" in 23.0506ms (afa2e885)
+2018-02-16T18:48:05.6294018+02:00 0HLBLBIOSG4FH:0000000B [INF] Request finished in 29.627ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:48:05.6425008+02:00 0HLBLBIOSG4FF:00000011 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:48:05.6446489+02:00 0HLBLBIOSG4FF:00000011 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:05.6470382+02:00 0HLBLBIOSG4FF:00000011 [INF] Request finished in 4.7527ms 204  (791a596a)
+2018-02-16T18:48:05.6553348+02:00 0HLBLBIOSG4FH:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:48:05.6587269+02:00 0HLBLBIOSG4FH:0000000C [INF] Successfully validated the token. (60169667)
+2018-02-16T18:48:05.6612348+02:00 0HLBLBIOSG4FH:0000000C [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:48:05.6638395+02:00 0HLBLBIOSG4FH:0000000C [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:05.6669394+02:00 0HLBLBIOSG4FH:0000000C [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:48:05.6698013+02:00 0HLBLBIOSG4FH:0000000C [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:05.6722334+02:00 0HLBLBIOSG4FH:0000000C [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:05.6746499+02:00 0HLBLBIOSG4FH:0000000C [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:48:05.6809688+02:00 0HLBLBIOSG4FH:0000000C [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:48:05.6863862+02:00 0HLBLBIOSG4FH:0000000C [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:05.6927182+02:00 0HLBLBIOSG4FH:0000000C [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:48:05.6956553+02:00 0HLBLBIOSG4FH:0000000C [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:48:05.6984463+02:00 0HLBLBIOSG4FH:0000000C [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 31.7874ms (afa2e885)
+2018-02-16T18:48:05.7011992+02:00 0HLBLBIOSG4FH:0000000C [INF] Request finished in 46.123ms 200 application/json; charset=utf-8 (791a596a)
+2018-02-16T18:48:14.6323187+02:00 0HLBLBIOSG4FF:00000012 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/remove?id=1   (ca22a1cb)
+2018-02-16T18:48:14.6343834+02:00 0HLBLBIOSG4FF:00000012 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:14.6370592+02:00 0HLBLBIOSG4FF:00000012 [INF] Request finished in 4.6386ms 204  (791a596a)
+2018-02-16T18:48:14.6426844+02:00 0HLBLBIOSG4FH:0000000D [INF] Request starting HTTP/1.1 DELETE http://localhost:53938/api/documents/remove?id=1   (ca22a1cb)
+2018-02-16T18:48:14.6448620+02:00 0HLBLBIOSG4FH:0000000D [INF] Successfully validated the token. (60169667)
+2018-02-16T18:48:14.6469373+02:00 0HLBLBIOSG4FH:0000000D [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:48:14.6488010+02:00 0HLBLBIOSG4FH:0000000D [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:14.6536260+02:00 0HLBLBIOSG4FH:0000000D [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:48:14.6563817+02:00 0HLBLBIOSG4FH:0000000D [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:14.6630842+02:00 0HLBLBIOSG4FH:0000000D [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.Remove (DocumentManagement)" with arguments (["1"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:14.6733765+02:00 0HLBLBIOSG4FH:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId]
+FROM [dbo].[Documents] AS [d]
+WHERE [d].[Id] = @__id_0" (0723d8ff)
+2018-02-16T18:48:14.6864965+02:00 0HLBLBIOSG4FH:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:48:14.6920661+02:00 0HLBLBIOSG4FH:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:14.7008944+02:00 0HLBLBIOSG4FH:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [f].[Id], [f].[Created], [f].[Descripion], [f].[FileSize], [f].[Name], [f].[OwnerId]
+FROM [dbo].[Documents] AS [f]
+WHERE [f].[Id] = @__id_0" (0723d8ff)
+2018-02-16T18:48:14.7241508+02:00 0HLBLBIOSG4FH:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?'"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DELETE FROM [dbo].[Documents]
+WHERE [Id] = @p0;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-02-16T18:48:14.7371529+02:00 0HLBLBIOSG4FH:0000000D [INF] Executing HttpStatusCodeResult, setting HTTP status code 200 (e28ccfae)
+2018-02-16T18:48:14.7410672+02:00 0HLBLBIOSG4FH:0000000D [INF] Executed action "DocumentManagement.Controllers.DocumentsController.Remove (DocumentManagement)" in 86.3493ms (afa2e885)
+2018-02-16T18:48:14.7447360+02:00 0HLBLBIOSG4FH:0000000D [INF] Request finished in 101.0321ms 200  (791a596a)
+2018-02-16T18:48:16.2022780+02:00 0HLBLBIOSG4FF:00000013 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/remove?id=3   (ca22a1cb)
+2018-02-16T18:48:16.2059347+02:00 0HLBLBIOSG4FF:00000013 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:16.2095085+02:00 0HLBLBIOSG4FF:00000013 [INF] Request finished in 7.644ms 204  (791a596a)
+2018-02-16T18:48:16.2171622+02:00 0HLBLBIOSG4FH:0000000E [INF] Request starting HTTP/1.1 DELETE http://localhost:53938/api/documents/remove?id=3   (ca22a1cb)
+2018-02-16T18:48:16.2204323+02:00 0HLBLBIOSG4FH:0000000E [INF] Successfully validated the token. (60169667)
+2018-02-16T18:48:16.2231672+02:00 0HLBLBIOSG4FH:0000000E [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:48:16.2256817+02:00 0HLBLBIOSG4FH:0000000E [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:16.2283851+02:00 0HLBLBIOSG4FH:0000000E [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:48:16.2316736+02:00 0HLBLBIOSG4FH:0000000E [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:16.2353301+02:00 0HLBLBIOSG4FH:0000000E [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.Remove (DocumentManagement)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:16.2400335+02:00 0HLBLBIOSG4FH:0000000E [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId]
+FROM [dbo].[Documents] AS [d]
+WHERE [d].[Id] = @__id_0" (0723d8ff)
+2018-02-16T18:48:16.2460713+02:00 0HLBLBIOSG4FH:0000000E [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:48:16.2520898+02:00 0HLBLBIOSG4FH:0000000E [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:16.2565897+02:00 0HLBLBIOSG4FH:0000000E [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [f].[Id], [f].[Created], [f].[Descripion], [f].[FileSize], [f].[Name], [f].[OwnerId]
+FROM [dbo].[Documents] AS [f]
+WHERE [f].[Id] = @__id_0" (0723d8ff)
+2018-02-16T18:48:16.2624292+02:00 0HLBLBIOSG4FH:0000000E [INF] Executed DbCommand ("0"ms) [Parameters=["@p0='?'"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DELETE FROM [dbo].[Documents]
+WHERE [Id] = @p0;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-02-16T18:48:16.2667386+02:00 0HLBLBIOSG4FH:0000000E [INF] Executing HttpStatusCodeResult, setting HTTP status code 200 (e28ccfae)
+2018-02-16T18:48:16.2705222+02:00 0HLBLBIOSG4FH:0000000E [INF] Executed action "DocumentManagement.Controllers.DocumentsController.Remove (DocumentManagement)" in 40.9688ms (afa2e885)
+2018-02-16T18:48:16.2754799+02:00 0HLBLBIOSG4FH:0000000E [INF] Request finished in 56.4823ms 200  (791a596a)
+2018-02-16T18:48:22.2129639+02:00 0HLBLBIOSG4FF:00000014 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/accounts/login   (ca22a1cb)
+2018-02-16T18:48:22.2155430+02:00 0HLBLBIOSG4FF:00000014 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:22.2182003+02:00 0HLBLBIOSG4FF:00000014 [INF] Request finished in 5.3857ms 204  (791a596a)
+2018-02-16T18:48:22.2238448+02:00 0HLBLBIOSG4FH:0000000F [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/accounts/login application/json;charset=UTF-8; 37 (ca22a1cb)
+2018-02-16T18:48:22.2262754+02:00 0HLBLBIOSG4FH:0000000F [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:22.2294154+02:00 0HLBLBIOSG4FH:0000000F [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:22.2319263+02:00 0HLBLBIOSG4FH:0000000F [INF] Executing action method "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" with arguments (["DocumentManagement.ViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:22.2356066+02:00 0HLBLBIOSG4FH:0000000F [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:48:22.2470674+02:00 0HLBLBIOSG4FH:0000000F [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:22.2492082+02:00 0HLBLBIOSG4FH:0000000F [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:48:22.2514119+02:00 0HLBLBIOSG4FH:0000000F [INF] Executed action "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" in 22.8448ms (afa2e885)
+2018-02-16T18:48:22.2537905+02:00 0HLBLBIOSG4FH:0000000F [INF] Request finished in 30.2971ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:48:22.2666350+02:00 0HLBLBIOSG4FF:00000015 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:48:22.2684164+02:00 0HLBLBIOSG4FF:00000015 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:22.2705569+02:00 0HLBLBIOSG4FF:00000015 [INF] Request finished in 4.4678ms 204  (791a596a)
+2018-02-16T18:48:22.2759101+02:00 0HLBLBIOSG4FH:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:48:22.2787093+02:00 0HLBLBIOSG4FH:00000010 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:48:22.2804323+02:00 0HLBLBIOSG4FH:00000010 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:48:22.2820820+02:00 0HLBLBIOSG4FH:00000010 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:22.2838587+02:00 0HLBLBIOSG4FH:00000010 [INF] Authorization was successful for user: "user". (d7eb274a)
+2018-02-16T18:48:22.2859806+02:00 0HLBLBIOSG4FH:00000010 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:22.2882804+02:00 0HLBLBIOSG4FH:00000010 [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:22.2902395+02:00 0HLBLBIOSG4FH:00000010 [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:48:22.2948985+02:00 0HLBLBIOSG4FH:00000010 [INF] Executed DbCommand ("0"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:48:22.2989745+02:00 0HLBLBIOSG4FH:00000010 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:22.3022824+02:00 0HLBLBIOSG4FH:00000010 [INF] Executed DbCommand ("0"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+WHERE [d.Owner].[IdentityId] = @__user_Id_0
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:48:22.3042604+02:00 0HLBLBIOSG4FH:00000010 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:48:22.3066316+02:00 0HLBLBIOSG4FH:00000010 [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 22.1466ms (afa2e885)
+2018-02-16T18:48:22.3092366+02:00 0HLBLBIOSG4FH:00000010 [INF] Request finished in 33.1904ms 404 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:48:45.9506914+02:00 0HLBLBIOSG4FF:00000016 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/accounts/login   (ca22a1cb)
+2018-02-16T18:48:45.9526376+02:00 0HLBLBIOSG4FF:00000016 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:45.9548910+02:00 0HLBLBIOSG4FF:00000016 [INF] Request finished in 4.2541ms 204  (791a596a)
+2018-02-16T18:48:45.9612479+02:00 0HLBLBIOSG4FH:00000011 [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/accounts/login application/json;charset=UTF-8; 38 (ca22a1cb)
+2018-02-16T18:48:45.9631460+02:00 0HLBLBIOSG4FH:00000011 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:45.9652654+02:00 0HLBLBIOSG4FH:00000011 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:45.9672332+02:00 0HLBLBIOSG4FH:00000011 [INF] Executing action method "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" with arguments (["DocumentManagement.ViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:45.9720989+02:00 0HLBLBIOSG4FH:00000011 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:48:45.9850986+02:00 0HLBLBIOSG4FH:00000011 [INF] Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:45.9870880+02:00 0HLBLBIOSG4FH:00000011 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:48:45.9891098+02:00 0HLBLBIOSG4FH:00000011 [INF] Executed action "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" in 23.9152ms (afa2e885)
+2018-02-16T18:48:45.9912370+02:00 0HLBLBIOSG4FH:00000011 [INF] Request finished in 30.2669ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:48:46.0096471+02:00 0HLBLBIOSG4FF:00000017 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:48:46.0119309+02:00 0HLBLBIOSG4FF:00000017 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:46.0152843+02:00 0HLBLBIOSG4FF:00000017 [INF] Request finished in 4.6477ms 204  (791a596a)
+2018-02-16T18:48:46.0218779+02:00 0HLBLBIOSG4FH:00000012 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:48:46.0247957+02:00 0HLBLBIOSG4FH:00000012 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:48:46.0273407+02:00 0HLBLBIOSG4FH:00000012 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:48:46.0291917+02:00 0HLBLBIOSG4FH:00000012 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:46.0312846+02:00 0HLBLBIOSG4FH:00000012 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-02-16T18:48:46.0335047+02:00 0HLBLBIOSG4FH:00000012 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:46.0354421+02:00 0HLBLBIOSG4FH:00000012 [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:46.0378362+02:00 0HLBLBIOSG4FH:00000012 [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:48:46.0439700+02:00 0HLBLBIOSG4FH:00000012 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:48:46.0490461+02:00 0HLBLBIOSG4FH:00000012 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:46.0575409+02:00 0HLBLBIOSG4FH:00000012 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:48:46.0599871+02:00 0HLBLBIOSG4FH:00000012 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:48:46.0629813+02:00 0HLBLBIOSG4FH:00000012 [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 30.8718ms (afa2e885)
+2018-02-16T18:48:46.0658716+02:00 0HLBLBIOSG4FH:00000012 [INF] Request finished in 44.4281ms 200 application/json; charset=utf-8 (791a596a)
+2018-02-16T18:48:54.2700515+02:00 0HLBLBIOSG4FF:00000018 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/accounts/login   (ca22a1cb)
+2018-02-16T18:48:54.2721178+02:00 0HLBLBIOSG4FF:00000018 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:54.2743570+02:00 0HLBLBIOSG4FF:00000018 [INF] Request finished in 4.7192ms 204  (791a596a)
+2018-02-16T18:48:54.2811411+02:00 0HLBLBIOSG4FH:00000013 [INF] Request starting HTTP/1.1 POST http://localhost:53938/api/accounts/login application/json;charset=UTF-8; 37 (ca22a1cb)
+2018-02-16T18:48:54.2829767+02:00 0HLBLBIOSG4FH:00000013 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:54.2855827+02:00 0HLBLBIOSG4FH:00000013 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:54.2877295+02:00 0HLBLBIOSG4FH:00000013 [INF] Executing action method "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" with arguments (["DocumentManagement.ViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:54.2939491+02:00 0HLBLBIOSG4FH:00000013 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [dbo].[AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-02-16T18:48:54.3084400+02:00 0HLBLBIOSG4FH:00000013 [INF] Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:54.3106837+02:00 0HLBLBIOSG4FH:00000013 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:48:54.3127045+02:00 0HLBLBIOSG4FH:00000013 [INF] Executed action "DocumentManagement.Controllers.AccountsController.Login (DocumentManagement)" in 27.6253ms (afa2e885)
+2018-02-16T18:48:54.3149726+02:00 0HLBLBIOSG4FH:00000013 [INF] Request finished in 34.1277ms 200 text/plain; charset=utf-8 (791a596a)
+2018-02-16T18:48:54.3313164+02:00 0HLBLBIOSG4FF:00000019 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:48:54.3331886+02:00 0HLBLBIOSG4FF:00000019 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:54.3353646+02:00 0HLBLBIOSG4FF:00000019 [INF] Request finished in 4.37ms 204  (791a596a)
+2018-02-16T18:48:54.3422635+02:00 0HLBLBIOSG4FH:00000014 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/documents/getall   (ca22a1cb)
+2018-02-16T18:48:54.3441437+02:00 0HLBLBIOSG4FH:00000014 [INF] Successfully validated the token. (60169667)
+2018-02-16T18:48:54.3472233+02:00 0HLBLBIOSG4FH:00000014 [INF] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-02-16T18:48:54.3488661+02:00 0HLBLBIOSG4FH:00000014 [INF] Policy execution successful. (0204925d)
+2018-02-16T18:48:54.3507301+02:00 0HLBLBIOSG4FH:00000014 [INF] Authorization was successful for user: "user". (d7eb274a)
+2018-02-16T18:48:54.3535021+02:00 0HLBLBIOSG4FH:00000014 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:48:54.3558270+02:00 0HLBLBIOSG4FH:00000014 [INF] Executing action method "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-02-16T18:48:54.3578257+02:00 0HLBLBIOSG4FH:00000014 [INF] GET ALL DOCUMENTS (20473cd5)
+2018-02-16T18:48:54.3629265+02:00 0HLBLBIOSG4FH:00000014 [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [dbo].[AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-02-16T18:48:54.3667644+02:00 0HLBLBIOSG4FH:00000014 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [dbo].[AspNetUserRoles] AS [userRole]
+INNER JOIN [dbo].[AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-02-16T18:48:54.3741356+02:00 0HLBLBIOSG4FH:00000014 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [d].[Id], [d].[Created], [d].[Descripion], [d].[FileSize], [d].[Name], [d].[OwnerId], [d.Owner].[Id], [d.Owner].[Age], [d.Owner].[FirstName], [d.Owner].[IdentityId], [d.Owner].[LastName], [d.Owner].[Registerd], [d.Owner.Identity].[Id], [d.Owner.Identity].[AccessFailedCount], [d.Owner.Identity].[ConcurrencyStamp], [d.Owner.Identity].[Email], [d.Owner.Identity].[EmailConfirmed], [d.Owner.Identity].[LockoutEnabled], [d.Owner.Identity].[LockoutEnd], [d.Owner.Identity].[NormalizedEmail], [d.Owner.Identity].[NormalizedUserName], [d.Owner.Identity].[PasswordHash], [d.Owner.Identity].[PhoneNumber], [d.Owner.Identity].[PhoneNumberConfirmed], [d.Owner.Identity].[SecurityStamp], [d.Owner.Identity].[TwoFactorEnabled], [d.Owner.Identity].[UserName]
+FROM [dbo].[Documents] AS [d]
+INNER JOIN [dbo].[Accounts] AS [d.Owner] ON [d].[OwnerId] = [d.Owner].[Id]
+LEFT JOIN [dbo].[AspNetUsers] AS [d.Owner.Identity] ON [d.Owner].[IdentityId] = [d.Owner.Identity].[Id]
+WHERE [d.Owner].[IdentityId] = @__user_Id_0
+ORDER BY [d].[Created] DESC" (0723d8ff)
+2018-02-16T18:48:54.3764261+02:00 0HLBLBIOSG4FH:00000014 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-02-16T18:48:54.3788867+02:00 0HLBLBIOSG4FH:00000014 [INF] Executed action "DocumentManagement.Controllers.DocumentsController.GetAll (DocumentManagement)" in 27.4979ms (afa2e885)
+2018-02-16T18:48:54.3815476+02:00 0HLBLBIOSG4FH:00000014 [INF] Request finished in 38.965ms 404 text/plain; charset=utf-8 (791a596a)

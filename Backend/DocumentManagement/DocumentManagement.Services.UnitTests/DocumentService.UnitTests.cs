@@ -111,7 +111,7 @@ namespace DocumentManagement.Services.UnitTests
                 Id ="2"
             };
             _userResolverServiceMock.Setup(s => s.GetUser()).Returns(user);
-            _userResolverServiceMock.Setup(s => s.GetUserRoles(user)).Returns(new List<string>{"Usr"});
+            _userResolverServiceMock.Setup(s => s.GetUserRoles(user)).Returns(new List<string>{"User"});
             _documentRepositoryMock.Setup(x => x.Get(It.IsAny<Expression<Func<Repository.Models.Document, bool>>>(), null, ""))
                 .Returns(_testData.AsQueryable());
 
