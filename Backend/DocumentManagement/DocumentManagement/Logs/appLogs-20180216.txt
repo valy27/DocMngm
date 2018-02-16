@@ -6792,3 +6792,49 @@ WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
 2018-02-16T17:56:55.9872504+02:00 0HLBLAN6DOMDO:00000006 [INF] Executing FileResult, sending file as "d5c49512-809d-4288-ad65-d944c125beca_Appointment_Gita_Cristian_Levi9 (1).docx" (3a97f597)
 2018-02-16T17:56:55.9983909+02:00 0HLBLAN6DOMDO:00000006 [INF] Executed action "DocumentManagement.Controllers.FilesController.DownloadFile (DocumentManagement)" in 49.5703ms (afa2e885)
 2018-02-16T17:56:56.0012562+02:00 0HLBLAN6DOMDO:00000006 [INF] Request finished in 65.3093ms 200 application/vnd.openxmlformats-officedocument.wordprocessingml.document (791a596a)
+2018-02-16T18:17:51.1654562+02:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:17:51.3976291+02:00  [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'__EFMigrationsHistory');" (0723d8ff)
+2018-02-16T18:17:51.4021567+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'__EFMigrationsHistory');" (0723d8ff)
+2018-02-16T18:17:51.4082670+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2018-02-16T18:17:51.4149357+02:00  [INF] No migrations were applied. The database is already up to date. (503cba9d)
+2018-02-16T18:17:51.5095413+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[AspNetRoles] AS [r]
+        WHERE [r].[Name] = N'Admin')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-02-16T18:17:51.9504474+02:00 0HLBLB3A15DUT:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api/values   (ca22a1cb)
+2018-02-16T18:17:52.0760333+02:00 0HLBLB3A15DUT:00000001 [INF] Request finished in 144.6573ms 404  (791a596a)
+2018-02-16T18:17:52.1000945+02:00 0HLBLB3A15DUT:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:53938/favicon.ico   (ca22a1cb)
+2018-02-16T18:17:52.1047743+02:00 0HLBLB3A15DUT:00000002 [INF] Request finished in 3.5148ms 404  (791a596a)
+2018-02-16T18:18:21.0313220+02:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-02-16T18:18:21.2457366+02:00  [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'__EFMigrationsHistory');" (0723d8ff)
+2018-02-16T18:18:21.2493713+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'__EFMigrationsHistory');" (0723d8ff)
+2018-02-16T18:18:21.2544815+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2018-02-16T18:18:21.2622427+02:00  [INF] No migrations were applied. The database is already up to date. (503cba9d)
+2018-02-16T18:18:21.3591479+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[AspNetRoles] AS [r]
+        WHERE [r].[Name] = N'Admin')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-02-16T18:18:21.7241150+02:00 0HLBLB3IT6745:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:53938/api   (ca22a1cb)
+2018-02-16T18:18:21.8495766+02:00 0HLBLB3IT6745:00000001 [INF] Request finished in 141.9569ms 404  (791a596a)
+2018-02-16T18:18:21.8760092+02:00 0HLBLB3IT6745:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:53938/favicon.ico   (ca22a1cb)
+2018-02-16T18:18:21.8801508+02:00 0HLBLB3IT6745:00000002 [INF] Request finished in 3.7768ms 404  (791a596a)
+2018-02-16T18:25:39.2428641+02:00 0HLBLB3IT6746:00000001 [INF] Request starting HTTP/1.1 POST http://127.0.0.1:21286/iisintegration  0 (ca22a1cb)
+2018-02-16T18:25:39.2453725+02:00 0HLBLB3IT6746:00000001 [INF] Request finished in 2.3364ms 202  (791a596a)
